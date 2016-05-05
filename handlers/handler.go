@@ -8,7 +8,7 @@ import (
 	"taskManagerLogin/tokenGenerator"
 )
 
-const redirectUrl string = "http://localhost:8888/tasksPage.html"
+const redirectUrl string = "http://localhost:8888/tasks.html"
 
 func Login(context config.Context) http.HandlerFunc{
 	return func(res http.ResponseWriter, req *http.Request) {
