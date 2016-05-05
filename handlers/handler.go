@@ -4,34 +4,28 @@ import (
 	"taskManagerLogin/config"
 	"net/http"
 	"strings"
-	"github.com/dgrijalva/jwt-go"
-	"taskManagerLogin/errorHandler"
 	"time"
+	"taskManagerLogin/tokenGenerator"
 )
 
-const secretKey string = "taskManagerToken"
-const redirectUrl string = "http://127.0.0.1:8888/tasksPage.html"
-
+const redirectUrl string = "http://localhost:8888/tasksPage.html"
 
 func Login(context config.Context) http.HandlerFunc{
 	return func(res http.ResponseWriter, req *http.Request) {
 		req.ParseForm()
-		id := strings.Join(req.Form["Id"], "")
-		name := strings.Join(req.Form["name"], "")
-		email := strings.Join(req.Form["email"], "")
 
-		token := jwt.New(jwt.GetSigningMethod("HS256"))
-		token.Claims["Id"] = id
-		token.Claims["name"] = name
-		token.Claims["email"] = email
-		tokenString, err := token.SignedString([]byte(secretKey))
-		if err != nil {
-			errorHandler.ErrorHandler(context.ErrorLogFile,err)
-		}
+		id := strings.Join(req.Form["Id"], "")
+		token := tokenGenerator.Generate(id,context)
+
 		expiration := time.Now().Add(365 * 24 * time.Hour)
-		cookie := http.Cookie{Name: "taskManager",Value:tokenString,Expires:expiration}
-		http.SetCookie(res, &cookie)
-		http.Redirect(res,req,redirectUrl,http.StatusTemporaryRedirect)
+
+		tokenCookie := http.Cookie{Name: "taskManagerToken",Value:token,Expires:expiration}
+		idCookie := http.Cookie{Name: "taskManagerId",Value:id,Expires:expiration}
+
+		http.SetCookie(res, &tokenCookie)
+		http.SetCookie(res, &idCookie)
+		res.Write([]byte(redirectUrl))
+
 		return
 	}
 }
