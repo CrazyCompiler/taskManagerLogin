@@ -22,10 +22,15 @@ func Login(context config.Context) http.HandlerFunc{
 			Name: "taskManagerToken",
 			Value:token,
 			Expires:expiration,
+			Secure:true,
 		}
 
 		idCookie := http.Cookie{
-			Name: "taskManagerId",Value:id,Expires:expiration}
+			Name: "taskManagerId",
+			Value:id,
+			Expires:expiration,
+			Secure:true,
+		}
 
 		http.SetCookie(res, &tokenCookie)
 		http.SetCookie(res, &idCookie)
