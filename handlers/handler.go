@@ -6,6 +6,7 @@ import (
 	"strings"
 	"time"
 	"taskManagerLogin/tokenGenerator"
+	"os"
 )
 
 const redirectUrl string = "/web/tasks.html"
@@ -35,7 +36,13 @@ func Login(context config.Context) http.HandlerFunc{
 		http.SetCookie(res, &tokenCookie)
 		http.SetCookie(res, &idCookie)
 		res.Write([]byte(redirectUrl))
-
 		return
 	}
+}
+
+
+func GetClientId(res http.ResponseWriter, req *http.Request) {
+	clientId := os.Getenv("googleClientId")
+	res.Write([]byte(clientId))
+	return
 }

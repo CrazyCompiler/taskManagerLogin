@@ -1,14 +1,20 @@
-<html lang="en">
+<html>
 <head>
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="740344073481-u1a2op18vue0qmn66matb4kgq4uk1vid.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="./javascript/jquery-2.1.4.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <script src="https://apis.google.com/js/api:client.js"></script>
     <script src="/javascript/index.js" async defer></script>
-
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-
+    <div class="loginContainer">
+        <img src="/images/profileIcon.png" alt="profile" class="profileIcon">
+        <div id="gSignInWrapper">
+            <div id="customBtn" class="customGPlusSignIn">
+                <img src="/images/gIcon.png" class="icon" alt="google">
+                <span class="buttonText">Sign in with Google</span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
