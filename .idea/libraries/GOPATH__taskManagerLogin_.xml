@@ -1,18 +1,16 @@
 <component name="libraryTable">
   <library name="GOPATH &lt;taskManagerLogin&gt;">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../httpServer" />
-      <root url="file://$PROJECT_DIR$/../gopkg.in" />
-      <root url="file://$PROJECT_DIR$/../newproject" />
-      <root url="file://$PROJECT_DIR$/../taskManagerServices" />
+      <root url="file://$PROJECT_DIR$/../learnings" />
+      <root url="file://$PROJECT_DIR$/../.idea" />
       <root url="file://$PROJECT_DIR$/../taskManager" />
-      <root url="file://$PROJECT_DIR$/../taskManagerWeb" />
-      <root url="file://$PROJECT_DIR$/../nginx" />
-      <root url="file://$PROJECT_DIR$/../google.golang.org" />
-      <root url="file://$PROJECT_DIR$/../hello" />
       <root url="file://$PROJECT_DIR$/../github.com" />
-      <root url="file://$PROJECT_DIR$/../interfaces" />
-      <root url="file://$PROJECT_DIR$/../golang.org" />
+      <root url="file://$PROJECT_DIR$/../protobuff" />
+      <root url="file://$PROJECT_DIR$/../test_practice" />
+      <root url="file://$PROJECT_DIR$/../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../taskManagerWeb" />
+      <root url="file://$PROJECT_DIR$/../taskManagerServices" />
+      <root url="file://$PROJECT_DIR$/../clone" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
