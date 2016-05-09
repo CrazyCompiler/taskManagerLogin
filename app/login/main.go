@@ -7,6 +7,11 @@ import (
 	"net/http"
 	"taskManagerLogin/config"
 	"taskManagerLogin/routes"
+	"taskManagerLogin/fileReaders"
+	"database/sql"
+	"taskManagerLogin/database"
+	"taskManagerLogin/errorHandler"
+	_"github.com/lib/pq"
 )
 
 func main() {
@@ -21,6 +26,23 @@ func main() {
 	context.ErrorLogFile = errorFile
 	var portFlag = flag.String("p","9999","To which port it will listen")
 	port := *portFlag
+
+	dbConfigFile := "dbConfigFile"
+
+	dbConfigDataJson,err := fileReaders.ReadJsonFile(dbConfigFile,context)
+
+	if err != nil {
+		os.Exit(1)
+	}
+	dbInfo := database.CreateDbInfo(dbConfigDataJson)
+
+	context.Db, err = sql.Open("postgres", dbInfo)
+
+	if err != nil {
+		errorHandler.ErrorHandler(context.ErrorLogFile,err)
+	}
+
+	context.Db.Ping()
 
 	routers.HandleRequests(context)
 	err = http.ListenAndServe(":"+port, nil)
