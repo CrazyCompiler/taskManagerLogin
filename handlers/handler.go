@@ -36,15 +36,7 @@ func Login(context config.Context) http.HandlerFunc{
 			Secure:true,
 		}
 
-		idCookie := http.Cookie{
-			Name: "taskManagerId",
-			Value:id,
-			Expires:expiration,
-			Secure:true,
-		}
-
 		http.SetCookie(res, &tokenCookie)
-		http.SetCookie(res, &idCookie)
 		res.Write([]byte(redirectUrl))
 		return
 	}
@@ -67,16 +59,7 @@ func Logout(context config.Context) http.HandlerFunc {
 			Expires:expiration,
 			Secure:true,
 		}
-
-		idCookie := http.Cookie{
-			Name: "taskManagerId",
-			Value:strconv.FormatInt(time.Now().Unix(), 10),
-			Expires:expiration,
-			Secure:true,
-		}
-
 		http.SetCookie(res, &tokenCookie)
-		http.SetCookie(res, &idCookie)
 		http.Redirect(res,req,"/",http.StatusTemporaryRedirect)
 		return
 	}

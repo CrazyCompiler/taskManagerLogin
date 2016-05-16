@@ -6,8 +6,8 @@ import (
 )
 
 const(
-	nonExistQuery string = "select not exists(select 1 from userInfo.user where googleId=$1);"
-	addUserQuery string = "insert into userInfo.user(googleId,userName,userMail)  VALUES($1,$2,$3);"
+	nonExistQuery string = "select not exists(select 1 from task.users where userId=$1);"
+	addUserQuery string = "insert into task.users(userId,userName,userMail)  VALUES($1,$2,$3);"
 )
 func UpdateUserInfo(context config.Context,userId string,userName,userMail string) error  {
 	permissionInRow,err := context.Db.Query(nonExistQuery,userId)
